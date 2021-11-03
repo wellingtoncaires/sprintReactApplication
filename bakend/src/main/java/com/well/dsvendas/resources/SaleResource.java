@@ -1,6 +1,8 @@
 package com.well.dsvendas.resources;
 
 import com.well.dsvendas.dto.SaleDTO;
+import com.well.dsvendas.dto.SaleSuccessDTO;
+import com.well.dsvendas.dto.SaleSumDTO;
 import com.well.dsvendas.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,18 @@ public class SaleResource {
     @GetMapping
     public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable) {
         Page<SaleDTO> list = service.findAll(pageable);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "amount-by-seller")
+    public ResponseEntity<List<SaleSumDTO>> amountGroupedBySeller() {
+        List<SaleSumDTO> list = service.amountGroupedBySeller();
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "success-by-seller")
+    public ResponseEntity<List<SaleSuccessDTO>> successGroupedBySeller() {
+        List<SaleSuccessDTO> list = service.successGroupedBySeller();
         return ResponseEntity.ok().body(list);
     }
 }
