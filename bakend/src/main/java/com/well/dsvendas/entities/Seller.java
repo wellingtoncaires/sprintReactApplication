@@ -7,8 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_sellers")
-public class Seller implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
